@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "$1" > /tmp/playfolder
+echo "Scanning $1..."
+find $1 -iregex '.*\.\(wav\|mp3\|mp4\|ogg\)$' > /tmp/playlist
+
+mkfifo /tmp/mplayer-control
+
+mplayer -slave -input file=/tmp/mplayer-control -playlist /tmp/playlist  
+
+rm /tmp/mplayer-control

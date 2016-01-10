@@ -1,0 +1,3 @@
+#!/bin/bash
+
+basename $(lsof -p $(pidof mplayer) | grep -o "`cat /tmp/playfolder`.*")
